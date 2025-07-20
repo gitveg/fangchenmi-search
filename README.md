@@ -20,7 +20,7 @@
 
 ## 目录结构
 ```
-防沉迷查询/
+fangchenmi-search/
 ├─ index.html                # 主HTML文件
 ├─ package.json              # 项目依赖与脚本
 ├─ vite.config.js            # Vite配置
@@ -37,7 +37,7 @@
 1. **克隆项目**
    ```sh
    git clone <你的仓库地址>
-   cd 防沉迷查询
+   cd fangchenmi-search
    ```
 2. **安装依赖**
    ```sh
