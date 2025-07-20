@@ -63,8 +63,6 @@ fangchenmi-search/
 ## License
 MIT
 
----
-
-如有建议或问题，欢迎提Issue或PR！ 
+--- 
 
 **上述内容基本由Cursor编写，仅供参考。**
