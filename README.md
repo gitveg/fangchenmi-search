@@ -2,25 +2,27 @@
 
 > 专注搜索，远离沉迷 —— 一键直达小红书、抖音、B站等平台的定向搜索工具
 
-项目直达：https://gitveg.github.io/fangchenmi-search/
+🌐 项目直达：https://gitveg.github.io/fangchenmi-search/
 
-## 项目简介
+<h5 align="center"> If you find our project useful, please give us a star ⭐ on GitHub for the latest updates.</h5>
+
+## 💡 项目简介
 
 本项目旨在帮助用户高效、专注地在热门内容平台（如小红书、抖音、B站）进行定向搜索，避免被首页推荐内容分散注意力、陷入刷短视频等沉迷行为。输入关键词后，自动生成目标平台的搜索链接并新开页面直达搜索结果。
 
-## 功能特性
-- 支持小红书、抖音、B站三大平台的定向搜索
-- 关键词自动URL编码，保证搜索准确
-- 简洁美观的用户界面，极易上手
-- 一键直达目标平台搜索结果，减少沉迷风险
+## ✨ 功能特性
+- 🔍 支持小红书、抖音、B站三大平台的定向搜索
+- 🧩 关键词自动URL编码，保证搜索准确
+- 🎨 简洁美观的用户界面，极易上手
+- 🚀 一键直达目标平台搜索结果，减少沉迷风险
 
-## 技术栈
+## 🔧 技术栈
 - 前端框架：React 18
 - 构建工具：Vite
 - 样式：Tailwind CSS
 - 纯前端实现，无需后端
 
-## 目录结构
+## 📁 目录结构
 ```
 fangchenmi-search/
 ├─ index.html                # 主HTML文件
@@ -34,7 +36,7 @@ fangchenmi-search/
    └─ index.css              # 全局样式（Tailwind入口）
 ```
 
-## 本地安装与使用
+## 🏗️ 本地安装与使用
 
 1. **克隆项目**
    ```sh
@@ -51,7 +53,7 @@ fangchenmi-search/
    ```
    启动后访问终端输出的本地地址（如 http://localhost:5173 ），即可使用。
 
-## 网页端使用
+## 🌍 网页端使用
 1. 选择目标平台（小红书/抖音/B站）
 2. 输入你要查找的关键词
 3. 点击“一键直达”，自动新开目标平台的搜索结果页面
@@ -62,7 +64,7 @@ fangchenmi-search/
 - 增加防沉迷提醒/统计功能
 - 支持PWA，移动端适配
 
-## License
+## 📄 License
 MIT
 
 --- 
