@@ -16,6 +16,11 @@ const platforms = [
         value: 'bilibili',
         getUrl: (keyword) => `https://search.bilibili.com/all?keyword=${encodeURIComponent(keyword)}`,
     },
+    {
+        name: '知乎',
+        value: 'zhihu',
+        getUrl: (keyword) => `https://www.zhihu.com/search?q=${encodeURIComponent(keyword)}&search_source=History&utm_content=search_history&type=content`,
+    },
 ];
 
 export default function App() {
@@ -23,7 +28,7 @@ export default function App() {
     const [keyword, setKeyword] = useState('');
 
     const handleSearch = (e) => {
-        e.preventDefault();
+        e.preventDefault();// 阻止表单默认提交行为（防止页面刷新）
         const selected = platforms.find((p) => p.value === platform);
         if (selected && keyword.trim()) {
             window.open(selected.getUrl(keyword.trim()), '_blank');
