@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const platforms = [
     {
@@ -26,13 +26,42 @@ const platforms = [
 export default function App() {
     const [platform, setPlatform] = useState(platforms[0].value);
     const [keyword, setKeyword] = useState('');
+    const [history, setHistory] = useState([]);
 
-    const handleSearch = (e) => {
-        e.preventDefault();// 阻止表单默认提交行为（防止页面刷新）
-        const selected = platforms.find((p) => p.value === platform);
-        if (selected && keyword.trim()) {
-            window.open(selected.getUrl(keyword.trim()), '_blank');
+    useEffect(() => {
+        const stored = localStorage.getItem('searchHistory');
+        if (stored) {
+            setHistory(JSON.parse(stored));
         }
+    }, []);
+
+    const saveHistory = (newHistory) => {
+        setHistory(newHistory);
+        localStorage.setItem('searchHistory', JSON.stringify(newHistory));
+    };
+
+    const handleSearch = (e, customKeyword, customPlatform) => {
+        if (e) e.preventDefault();
+        const searchKeyword = customKeyword !== undefined ? customKeyword : keyword;
+        const searchPlatform = customPlatform !== undefined ? customPlatform : platform;
+        const selected = platforms.find((p) => p.value === searchPlatform);
+        if (selected && searchKeyword.trim()) {
+            window.open(selected.getUrl(searchKeyword.trim()), '_blank');
+            const newItem = { keyword: searchKeyword.trim(), platform: searchPlatform };
+            const filtered = history.filter(h => !(h.keyword === newItem.keyword && h.platform === newItem.platform));
+            const newHistory = [newItem, ...filtered].slice(0, 10);
+            saveHistory(newHistory);
+        }
+    };
+
+    const handleHistoryClick = (item) => {
+        setPlatform(item.platform);
+        setKeyword(item.keyword);
+        handleSearch(null, item.keyword, item.platform);
+    };
+
+    const handleClearHistory = () => {
+        saveHistory([]);
     };
 
     return (
@@ -70,6 +99,30 @@ export default function App() {
                         一键直达
                     </button>
                 </form>
+                {history.length > 0 && (
+                    <div className="mt-6">
+                        <div className="flex justify-between items-center mb-2">
+                            <span className="text-sm font-semibold text-gray-600">历史搜索</span>
+                            <button
+                                className="text-xs text-gray-400 hover:text-pink-500 transition"
+                                onClick={handleClearHistory}
+                            >清空</button>
+                        </div>
+                        <ul className="space-y-1 max-h-48 overflow-y-auto">
+                            {history.map((item, idx) => (
+                                <li key={idx}>
+                                    <button
+                                        className="w-full text-left px-3 py-1 rounded hover:bg-pink-50 focus:outline-none focus:bg-pink-100 text-gray-700 flex items-center gap-2"
+                                        onClick={() => handleHistoryClick(item)}
+                                    >
+                                        <span className="inline-block px-2 py-0.5 text-xs rounded bg-pink-100 text-pink-500 font-medium">{platforms.find(p => p.value === item.platform)?.name || item.platform}</span>
+                                        <span className="truncate">{item.keyword}</span>
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                )}
                 <p className="mt-6 text-xs text-gray-400 text-center">专注搜索，远离沉迷</p>
             </div>
         </div>
